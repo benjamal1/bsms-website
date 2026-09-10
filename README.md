@@ -9,12 +9,10 @@ Static site for BSMS, hosted on GitHub Pages. No build tools needed — just pla
 | `eboard.html` | E-board photos + captions |
 | `past-events.html` | Poster grid with captions |
 | `recent-events.html` | Detailed recaps (e.g., Dr. Hulstyn) |
-| `mentorship.html` | Mentor bios + scheduling links |
-| `bare-bones.html` | Bare Bones newsletter link (only place it's linked) |
 
 ## How to update
 - **Add an event:** copy an `<article class="event">` block (recent) or a `.card` (past events), put the image in `assets/`, update text.
-- **Add a mentor / e-board member:** copy a `.card` block, add photo to `assets/eboard/`, swap the scheduling link.
+- **Add an e-board member:** copy a `.card` block, add photo to `assets/eboard/`, edit the caption.
 - **Fill placeholders:** search the repo for `TODO` — every placeholder is marked.
 
 ## Publishing
