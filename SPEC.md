@@ -1,75 +1,68 @@
-# Brown Sports Medicine Society — Website Spec
+# Spec — Brown Sports Medicine Society Website
 
-## 1. Overview
-Static website for the Brown Sports Medicine Society (BSMS), hosted free on **GitHub Pages**.
-Repo: `benjamal1/bsms-website`, published at `https://benjamal1.github.io/bsms-website/`.
+Published: 2026-09-10 · Triage label: `ready-for-agent` (GitHub Issues: benjamal1/bsms-website)
 
-## 2. Tech Stack
-- **Plain HTML5 + CSS3 + minimal vanilla JS** (no frameworks, no build step, no TypeScript).
-- Rationale: GitHub Pages serves static files only; content-heavy site; must be maintainable by future non-technical e-board members.
-- Shared layout: a consistent header/nav and footer repeated on each page. A tiny `main.js` handles the mobile nav toggle and image lightbox.
-- All pages must work with relative paths so the site functions under the `/bsms-website/` subpath.
+## Problem Statement
 
-## 3. Pages
+The Brown Sports Medicine Society (BSMS) has no web presence. Prospective members, guest speakers, and campus partners currently have no way to learn what the club does, see past or upcoming events, meet the executive board, or find the club's newsletter and interest form. The club's presence lives only on Instagram and the university's generic org directory — neither of which presents events, mentorship, or the newsletter in a structured way.
 
-### 3.1 `index.html` — Home / Landing
-- Club name, tagline, hero styling (Brown-inspired palette: brown/red `#4E3629` / `#C00404`, cream accents).
-- "What We Do" summary:
-  - Guest speakers in sports medicine, surgery, orthopedics, and adjacent fields (physicians, surgeons, nutritionists).
-  - Hands-on clinical workshops (e.g., suturing workshop).
-  - Sports fundraisers (e.g., recurring 3v3 basketball tournament).
-  - Mentorship & opportunity-finding: we teach members how to find research and shadowing opportunities; growing network via guest speakers enables future connections.
-- Nav links to all subpages. **Bare Bones is NOT linked on the homepage** (per requirement) — it appears only in the nav? No: per requirement, Bare Bones link lives only on its own context; nav includes it (nav ≠ homepage feature), but no homepage section/button promotes it.
-- Prominent link/button to the **Google interest form** (placeholder URL `#TODO-interest-form`).
-- Footer: Instagram (@brownsportsmedicinesociety), email (brownsportsmedicinesociety@brown.edu), Bearsync page link.
+## Solution
 
-### 3.2 `eboard.html` — E-Board
-- Grid of e-board member photos (from Instagram e-board posts).
-- Each card: photo + transcribed caption text (name, role, bio).
-- Placeholders until assets are provided: gray boxes with "Photo coming soon" and sample caption text.
+A static website for BSMS, hosted free on GitHub Pages, presenting the club to the Brown community: what it does, who runs it, what events it has run and will run, and how to get involved (interest form, mentorship). The site must be updatable by future non-technical e-board members using nothing more than a text editor and git — or the GitHub web UI.
 
-### 3.3 `past-events.html` — Past Events
-- Grid of event posters, each with a one-line caption.
-- Populated with the 7 assets in `assets/past-events/` (Maasen poster, Dr. Hulstyn, Dr. Shi, others — captions marked TODO where unknown).
-- Click to open full-size (lightbox).
+## User Stories
 
-### 3.4 `recent-events.html` — Recent Events
-- Detailed entries for recent events with notes/summaries.
-- First entry: **Dr. Hulstyn event** — poster + formatted notes (notes placeholder until provided).
-- Structure supports adding future events as article blocks.
+1. As a prospective member, I want to understand what BSMS does, so that I can decide whether to join.
+2. As a prospective member, I want a summary of guest speakers, workshops, and fundraisers, so that I know what kinds of events to expect.
+3. As a prospective member, I want to fill out an interest form, so that I can request events, raise concerns, or contact someone.
+4. As a prospective member, I want links to the club's Instagram and email, so that I can follow along.
+5. As a current member, I want to see recaps of recent events with notes, so that I can catch up on what I missed.
+6. As a current member, I want a gallery of past event posters with captions, so that I can see the club's history at a glance.
+7. As a current member, I want to click any poster to view it full-size, so that I can read details.
+8. As a current member, I want to read about the mentorship program's approach, so that I understand how it helps me find research and shadowing.
+9. As a current member, I want mentor bios and scheduling links, so that I can book one-on-one mentorship meetings.
+10. As a current member, I want to find the Bare Bones newsletter, so that I can read club updates.
+11. As a visitor, I want the site to work on my phone, so that I can browse from anywhere.
+12. As a future e-board member with no coding experience, I want to update an event by copying an existing block, so that I don't need to learn web development.
+13. As a future e-board member, I want every unfinished piece marked clearly (TODO), so that I know what still needs content.
+14. As a future e-board member, I want a written guide, so that I can maintain the site after the founder graduates.
+15. As the club president, I want the Bare Bones link to appear only on the newsletter page, so that the homepage stays focused.
+16. As the club president, I want a Brown-branded look, so that the site looks like it belongs to the university community.
+17. As a mentor, I want my own card with a scheduling link, so that members can book with me directly.
+18. As a guest speaker liaison, I want recent events presented as detailed recaps, so that future speakers see what our events look like.
+19. As any visitor, I want no broken links or missing images, so that the club appears professional.
+20. As the maintainer, I want zero-cost hosting with no server to manage, so that there is nothing to pay for or secure.
+21. As the maintainer, I want deployment to happen automatically on push, so that updates require no manual steps.
 
-### 3.5 `bare-bones.html` — Bare Bones Newsletter
-- Brief description of Bare Bones, the BSMS newsletter.
-- External link to the newsletter (placeholder URL `#TODO-barebones-link`).
-- This is the only page featuring the Bare Bones link.
+## Implementation Decisions
 
-### 3.6 `mentorship.html` — Mentorship
-- Framing text: BSMS may not directly provide research/shadowing placements, but teaches members how to find them; members with lab space connect others as opportunities arise; guest-speaker network grows future opportunities; shadowing can be found through the club.
-- Mentor cards: photo, name, excerpt (interests, research), and scheduling link (placeholders `#TODO-calendly-*` until mentors submit links).
+- **Static HTML/CSS/vanilla JS only.** No frameworks, no build step, no TypeScript. Rationale: GitHub Pages serves static files only; content-heavy site; must be maintainable by non-technical members.
+- **GitHub Pages hosting** from the default branch root — free, automatic deploy on push.
+- **Shared header/footer repeated on each page** rather than a templating engine, to keep the mental model "one file = one page."
+- **Card/article-block convention:** new content (event, mentor, e-board member) is created by copying an existing block and editing text — no abstractions.
+- **Placeholder convention:** every unfinished asset or URL is marked with `TODO` and a visible amber callout in the UI, searchable across the repo.
+- **Bare Bones newsletter link appears only on the newsletter page** — explicitly excluded from the homepage.
+- **Relative paths throughout**, so the site works under the `/bsms-website/` Pages subpath.
+- **Image lightbox and mobile menu** implemented in a small shared script; no external dependencies.
+- **Brown-inspired visual palette** (brown/cream/red) for university affiliation.
+- Prototype decision carried from exploration: poster PDFs are converted to images before embedding (browsers render poster PDFs inconsistently in `<img>`).
 
-## 4. Assets
-- `assets/past-events/` — 7 files migrated from the source folder (PDF poster converted to PNG for web embedding).
-- `assets/eboard/` — placeholder dir for e-board photos.
-- Images should be optimized (<500 KB each) before adding.
+## Testing Decisions
 
-## 5. Placeholders (awaiting from owner)
-| Item | Placeholder token |
-|---|---|
-| Google interest form URL | `#TODO-interest-form` |
-| Bare Bones newsletter URL | `#TODO-barebones-link` |
-| E-board photos + captions | `assets/eboard/`, sample cards |
-| Dr. Hulstyn event notes | `recent-events.html` block |
-| Mentor bios + scheduling links | `mentorship.html` cards |
-| Exact captions for past-event posters | `past-events.html` TODOs |
+- No automated test suite — a static content site does not justify one.
+- A "good check" = the page renders correctly at desktop and mobile widths, all links resolve, all images load, and no unintended `TODO` markers remain visible.
+- Verification method: local preview (`python3 -m http.server`) plus a link/image check before each push.
+- Prior art: none in this project; checks are manual and documented in the maintainer's guide.
 
-## 6. Deployment
-- Push to GitHub (`benjamal1/bsms-website`, default branch `main`).
-- Enable GitHub Pages: Settings → Pages → Deploy from branch `main` / root.
-- No build step; site goes live at `https://benjamal1.github.io/bsms-website/`.
+## Out of Scope
 
-## 7. Handoff / Maintenance
-- `README.md` with: how to edit pages, add an event, add a mentor, replace placeholders, and how Pages publishing works.
-- Convention: copy an existing event/mentor card block and edit text — no build tools required.
+- Custom domain, analytics, CMS, member accounts, RSVPs, or any backend.
+- Automated image optimization pipeline (images are optimized manually before adding; guideline: under ~500 KB).
+- TypeScript, React, Jekyll, or any other toolchain (rejected during research).
+- Multi-language support.
 
-## 8. Out of Scope
-- Custom domain, CMS, contact-form backend (Google Form covers this), analytics, member logins.
+## Further Notes
+
+- Outstanding placeholders awaiting owner content: Google interest form URL; Bare Bones newsletter URL; e-board photos with transcribed Instagram captions; Dr. Hulstyn event notes/date; mentor bios and scheduling links; captions for several past-event posters.
+- Issue tracker for future `/to-spec` runs: GitHub Issues on `benjamal1/bsms-website` (triaged with `ready-for-agent` label).
+- Project harness (goal/structure/conventions/loadout) lives in `AGENTS.md`, scaffolded via `/harness init` from grilled answers; project loadout edited via `/loadout`.
