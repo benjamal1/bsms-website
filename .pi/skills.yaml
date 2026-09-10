@@ -1,0 +1,15 @@
+# BSMS Website project loadout.
+# Static HTML/CSS/JS site on GitHub Pages; maintained with agent + non-technical e-board handoff.
+# Excluded: tdd and language-specific skills (no backend/tests, per workflow answers).
+skills:
+  - to-spec
+  - grill-me
+  - prototype
+  - implement
+  - handoff
+  - frontend-ui-engineering
+  - code-review-and-quality
+  - git-workflow-and-versioning
+  - shipping-and-launch
+  - performance-optimization
+  - writing-for-agents
